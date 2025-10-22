@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LUMINARIA: Entre Luz y Sombras</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #000;
+      color: #f0f0f0;
+      overflow-x: hidden;
+    }
+
+    .hero {
+      height: 100vh;
+      background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.95)), url('https://placehold.co/1920x1080/1a0a2e/ffffff?text=LUMINARIA') no-repeat center center/cover;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 2rem;
+    }
+
+    .logo {
+      font-size: 4rem;
+      font-weight: 800;
+      letter-spacing: 4px;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(to right, #d4af37, #fff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+    }
+
+    .tagline {
+      font-size: 1.4rem;
+      max-width: 700px;
+      line-height: 1.6;
+      margin-bottom: 2.5rem;
+      color: #ccc;
+    }
+
+    .btn {
+      padding: 0.8rem 2.2rem;
+      font-size: 1.1rem;
+      background: transparent;
+      color: #d4af37;
+      border: 2px solid #d4af37;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+      background: rgba(212, 175, 55, 0.15);
+      transform: translateY(-3px);
+      box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+    }
+
+    section {
+      padding: 5rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    h2 {
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 3rem;
+      color: #d4af37;
+      letter-spacing: 2px;
+    }
+
+    /* Personajes */
+    .characters {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2.5rem;
+    }
+
+    .character-card {
+      background: rgba(20, 10, 30, 0.7);
+      border: 1px solid #333;
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .character-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+    }
+
+    .character-img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      margin: 0 auto 1.2rem;
+      object-fit: cover;
+      border: 2px solid #d4af37;
+    }
+
+    .character-name {
+      font-size: 1.4rem;
+      margin-bottom: 0.8rem;
+      color: #fff;
+    }
+
+    .character-role {
+      font-size: 0.95rem;
+      color: #d4af37;
+      margin-bottom: 0.8rem;
+      font-style: italic;
+    }
+
+    .character-desc {
+      font-size: 0.9rem;
+      color: #bbb;
+      line-height: 1.5;
+    }
+
+    /* Capítulos */
+    .chapters-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .chapter-item {
+      padding: 1rem 1.5rem;
+      background: rgba(20, 10, 30, 0.6);
+      border-left: 3px solid #d4af37;
+      transition: background 0.3s ease;
+    }
+
+    .chapter-item:hover {
+      background: rgba(30, 15, 40, 0.8);
+    }
+
+    .chapter-number {
+      color: #d4af37;
+      font-weight: bold;
+      margin-right: 0.5rem;
+    }
+
+    /* Ilustradora */
+    .illustrator-section {
+      background: rgba(10, 5, 20, 0.8);
+      border-radius: 12px;
+      padding: 2rem;
+      text-align: center;
+      margin-top: 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .illustrator-image {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #d4af37;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 0 25px rgba(212, 175, 55, 0.5);
+    }
+
+    .illustrator-name {
+      font-size: 2rem;
+      color: #d4af37;
+      margin-bottom: 0.5rem;
+      letter-spacing: 1px;
+    }
+
+    .illustrator-title {
+      font-size: 1.1rem;
+      color: #aaa;
+      margin-bottom: 1.5rem;
+      font-style: italic;
+    }
+
+    .illustrator-bio {
+      font-size: 1rem;
+      line-height: 1.6;
+      max-width: 600px;
+      margin: 0 auto 2rem;
+      color: #ddd;
+    }
+
+    .ig-btn {
+      background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
+      color: white;
+      padding: 0.8rem 2rem;
+      border-radius: 30px;
+      font-weight: bold;
+      text-decoration: none;
+      display: inline-block;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .ig-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: #666;
+      font-size: 0.9rem;
+      border-top: 1px solid #222;
+    }
+
+    @media (max-width: 768px) {
+      .logo {
+        font-size: 2.8rem;
+      }
+      .tagline {
+        font-size: 1.1rem;
+      }
+      h2 {
+        font-size: 2rem;
+      }
+      .illustrator-image {
+        width: 140px;
+        height: 140px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <section class="hero">
+    <h1 class="logo">LUMINARIA</h1>
+    <p class="tagline">Entre luz y sombras, la armonía era una mentira.</p>
+    <button class="btn" onclick="document.querySelector('#characters').scrollIntoView({behavior:'smooth'})">
+      Descubre la verdad
+    </button>
+  </section>
+
+  <!-- Personajes -->
+  <section id="characters" class="characters-section">
+    <h2>PERSONAJES</h2>
+    <div class="characters">
+      <div class="character-card">
+        <img src="yanli.png" alt="Yanli" class="character-img">
+        <h3 class="character-name">Yanli</h3>
+        <p class="character-role">Líder de Shadow</p>
+        <p class="character-desc">Firme, desconfiada y leal a su grupo. No cree en la paz impuesta y cuestiona cada orden de la reina.</p>
+      </div>
+      <div class="character-card">
+        <div class="character-img" style="background:#333; display:flex; align-items:center; justify-content:center; font-size:2.5rem; color:#d4af37; font-weight:bold;">V</div>
+        <h3 class="character-name">Valeria</h3>
+        <p class="character-role">Guardiana de Shadow</p>
+        <p class="character-desc">Impulsiva y feroz. Su sombra arde con rabia, pero su corazón lucha por proteger a las suyas.</p>
+      </div>
+      <div class="character-card">
+        <div class="character-img" style="background:#333; display:flex; align-items:center; justify-content:center; font-size:2.5rem; color:#d4af37; font-weight:bold;">Y</div>
+        <h3 class="character-name">Yuly</h3>
+        <p class="character-role">Lumus</p>
+        <p class="character-desc">Sensible y herida. Siempre llega después del desastre, y carga con la culpa de no poder salvar a todos.</p>
+      </div>
+      <div class="character-card">
+        <div class="character-img" style="background:#333; display:flex; align-items:center; justify-content:center; font-size:2.5rem; color:#d4af37; font-weight:bold;">Y</div>
+        <h3 class="character-name">Yussi</h3>
+        <p class="character-role">Shadow</p>
+        <p class="character-desc">Atormentada por la voz de Keila. Escucha lo que otros no pueden, y carga con secretos que la consumen.</p>
+      </div>
+      <div class="character-card">
+        <div class="character-img" style="background:#333; display:flex; align-items:center; justify-content:center; font-size:2.5rem; color:#d4af37; font-weight:bold;">T</div>
+        <h3 class="character-name">Tricci</h3>
+        <p class="character-role">Lumus</p>
+        <p class="character-desc">Fuerte por fuera, vulnerable por dentro. Su luz arde con fuerza, pero su miedo es más profundo.</p>
+      </div>
+      <div class="character-card">
+        <div class="character-img" style="background:#333; display:flex; align-items:center; justify-content:center; font-size:2.5rem; color:#d4af37; font-weight:bold;">S</div>
+        <h3 class="character-name">Seul-ji</h3>
+        <p class="character-role">Lumus</p>
+        <p class="character-desc">Estratégica y fría. Usa su mente como arma, pero su lealtad tiene límites que nadie ha cruzado... aún.</p>
+      </div>
+      <div class="character-card">
+        <div class="character-img" style="background:#333; display:flex; align-items:center; justify-content:center; font-size:2.5rem; color:#d4af37; font-weight:bold;">B</div>
+        <h3 class="character-name">Byeol</h3>
+        <p class="character-role">Shadow</p>
+        <p class="character-desc">Silenciosa y observadora. Sus dedos tocan el suelo no por miedo, sino para sentir la verdad que se esconde bajo la tierra.</p>
+      </div>
+      <div class="character-card">
+        <div class="character-img" style="background:#333; display:flex; align-items:center; justify-content:center; font-size:2.5rem; color:#d4af37; font-weight:bold;">M</div>
+        <h3 class="character-name">Mylleen</h3>
+        <p class="character-role">Lumus</p>
+        <p class="character-desc">Inocente en apariencia, pero con una fuerza que ni ella misma entiende. Ve más de lo que debería.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Capítulos -->
+  <section id="chapters" class="chapters-section">
+    <h2>CAPÍTULOS</h2>
+    <div class="chapters-list">
+      <div class="chapter-item"><span class="chapter-number">1.</span> Donde la luz no llega</div>
+      <div class="chapter-item"><span class="chapter-number">2.</span> El templo bajo la piel</div>
+      <div class="chapter-item"><span class="chapter-number">3.</span> Los susurros del cristal</div>
+      <div class="chapter-item"><span class="chapter-number">4.</span> El eco que no calla</div>
+      <div class="chapter-item"><span class="chapter-number">5.</span> Donde el pueblo no aplaude</div>
+      <div class="chapter-item"><span class="chapter-number">6.</span> La cabaña de las grietas</div>
+      <div class="chapter-item"><span class="chapter-number">7.</span> La cabaña de las grietas</div>
+      <div class="chapter-item"><span class="chapter-number">8.</span> El pueblo arde en silencio</div>
+      <div class="chapter-item"><span class="chapter-number">9.</span> La puerta que no debía abrirse</div>
+      <div class="chapter-item"><span class="chapter-number">10.</span> Donde la sombra respira</div>
+      <div class="chapter-item"><span class="chapter-number">11.</span> La bestia que solía llamarse Keila</div>
+      <div class="chapter-item"><span class="chapter-number">12.</span> El hambre de las sombras</div>
+      <div class="chapter-item"><span class="chapter-number">13.</span> El reflejo que sonríe</div>
+      <div class="chapter-item"><span class="chapter-number">14.</span> El eco del espejo</div>
+      <div class="chapter-item"><span class="chapter-number">15.</span> El sendero roto</div>
+      <div class="chapter-item"><span class="chapter-number">16.</span> El precio del espejo</div>
+      <div class="chapter-item"><span class="chapter-number">17.</span> El rugido del espejo</div>
+      <div class="chapter-item"><span class="chapter-number">18.</span> La vuelta de las heridas</div>
+      <div class="chapter-item"><span class="chapter-number">19.</span> Carne y piedras</div>
+      <div class="chapter-item"><span class="chapter-number">20.</span> Una función para ustedes</div>
+      <div class="chapter-item"><span class="chapter-number">21.</span> Voces quebradas</div>
+      <div class="chapter-item"><span class="chapter-number">22.</span> Grietas en la oscuridad</div>
+      <div class="chapter-item"><span class="chapter-number">23.</span> Grietas en la oscuridad</div>
+      <div class="chapter-item"><span class="chapter-number">24.</span> Fuego en la herida</div>
+      <div class="chapter-item"><span class="chapter-number">25.</span> El eco de las ruinas</div>
+      <div class="chapter-item"><span class="chapter-number">26.</span> Voces que desgarran</div>
+      <div class="chapter-item"><span class="chapter-number">27.</span> La voz que quebró el tiempo</div>
+      <div class="chapter-item"><span class="chapter-number">28.</span> El juego de los traidores</div>
+      <div class="chapter-item"><span class="chapter-number">29.</span> Cuerpos cosidos, almas rotas</div>
+      <div class="chapter-item"><span class="chapter-number">30.</span> El canto en la penumbra</div>
+      <div class="chapter-item"><span class="chapter-number">31.</span> Ecos de lo prohibido</div>
+      <div class="chapter-item"><span class="chapter-number">32.</span> El pasillo prohibido</div>
+      <div class="chapter-item"><span class="chapter-number">33.</span> La cuerda a punto de romperse</div>
+      <div class="chapter-item"><span class="chapter-number">34.</span> El rumor del eclipse</div>
+      <div class="chapter-item"><span class="chapter-number">35.</span> La corona agrietada</div>
+      <div class="chapter-item"><span class="chapter-number">36.</span> Voces en la corona</div>
+      <div class="chapter-item"><span class="chapter-number">37.</span> Voces en la corona</div>
+      <div class="chapter-item"><span class="chapter-number">38.</span> Voces en la penumbra</div>
+      <div class="chapter-item"><span class="chapter-number">39.</span> El precio de la corona</div>
+      <div class="chapter-item"><span class="chapter-number">40.</span> El día que el sol tembló</div>
+      <div class="chapter-item"><span class="chapter-number">50.</span> El día que el sol se escondió</div>
+      <div class="chapter-item"><span class="chapter-number">51.</span> El eclipse abre la herida</div>
+      <div class="chapter-item"><span class="chapter-number">52.</span> El altar del eclipse</div>
+      <div class="chapter-item"><span class="chapter-number">53.</span> Sombras liberadas</div>
+      <div class="chapter-item"><span class="chapter-number">54.</span> Donde la oscuridad mostró sus colmillos</div>
+      <div class="chapter-item"><span class="chapter-number">55.</span> La historia que nunca fue contada</div>
+      <div class="chapter-item"><span class="chapter-number">56.</span> Reunión en la sombra</div>
+      <div class="chapter-item"><span class="chapter-number">57.</span> La verdad envenenada</div>
+      <div class="chapter-item"><span class="chapter-number">58.</span> La verdad envenenada</div>
+      <div class="chapter-item"><span class="chapter-number">59.</span> Voces quebradas</div>
+      <div class="chapter-item"><span class="chapter-number">60.</span> Sangre de hermanos</div>
+      <div class="chapter-item"><span class="chapter-number">61.</span> El bosque y la corona</div>
+      <div class="chapter-item"><span class="chapter-number">62.</span> La promesa rota</div>
+      <div class="chapter-item"><span class="chapter-number">63.</span> La masacre del eclipse</div>
+      <div class="chapter-item"><span class="chapter-number">Final.</span> Viva el rey</div>
+      <div class="chapter-item"><span class="chapter-number">Epílogo.</span> La mentira de la armonía</div>
+    </div>
+  </section>
+
+  <!-- Ilustradora -->
+  <section id="illustrator" class="illustrator-section">
+    <h2>ILUSTRADORA</h2>
+    <div class="illustrator-image" style="background:#333; display:flex; align-items:center; justify-content:center; font-size:5rem; color:#d4af37;">N</div>
+    <h3 class="illustrator-name">Nico</h3>
+    <p class="illustrator-title">Artista Visual de Luminaria</p>
+    <p class="illustrator-bio">
+      Nico es la talentosa ilustradora que le dio vida visual a los personajes de <em>Luminaria: Entre Luz y Sombras</em>. 
+      Con un estilo oscuro, emotivo y profundamente humano, capturó el alma de Yanli, Yussi, Valeria y todas las chicas que habitan este mundo roto.
+      Su arte no solo retrata rostros, sino las grietas que llevan dentro.
+    </p>
+    <a href="https://instagram.com" target="_blank" class="ig-btn">
+      <span class="instagram-icon">📷</span> Sígueme en Instagram
+    </a>
+  </section>
+
+  <footer>
+    &copy; 2025 Aly Cerdas Sánchez / Idol Experience. Todos los derechos reservados.
+  </footer>
+
+</body>
+</html>
+
+<img src="yanli.png" alt="Yanli" class="character-img">
+
